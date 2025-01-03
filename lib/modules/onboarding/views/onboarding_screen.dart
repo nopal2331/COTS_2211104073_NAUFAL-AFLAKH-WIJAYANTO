@@ -8,43 +8,70 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
-        controller: controller.pageController,
-        itemCount: controller.onboardingData.length,
-        itemBuilder: (context, index) {
-          final data = controller.onboardingData[index];
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Menampilkan gambar
-              Image.asset(
-                data['image']!,
-                width: 250,
-                height: 250,
-                fit: BoxFit.cover,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                controller: controller.pageController,
+                itemCount: controller.onboardingData.length,
+                itemBuilder: (context, index) {
+                  final data = controller.onboardingData[index];
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        data['image'] ?? '',
+                        height: 300,
+                        width: 300,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(
+                            Icons.broken_image,
+                            size: 100,
+                            color: Colors.red,
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        data['title'] ?? '',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        data['description'] ?? '',
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  );
+                },
               ),
-              SizedBox(height: 20),
-              // Menampilkan judul
-              Text(
-                data['title']!,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () => Get.toNamed('/login'),
+                    child: const Text(
+                      'Skip',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: controller.onNext,
+                    child: const Text('Next'),
+                  ),
+                ],
               ),
-              SizedBox(height: 10),
-              // Menampilkan deskripsi
-              Text(
-                data['description']!,
-                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          );
-        },
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          onPressed: controller.onNext,
-          child: Text("Next"),
+            ),
+          ],
         ),
       ),
     );
