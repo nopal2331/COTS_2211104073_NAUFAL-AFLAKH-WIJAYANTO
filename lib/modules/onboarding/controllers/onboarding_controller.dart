@@ -7,19 +7,19 @@ class OnboardingController extends GetxController {
   // Data onboarding dengan gambar
   final List<Map<String, String>> onboardingData = [
     {
-      "title": "Welcome",
-      "description": "Welcome to our app",
-      "image": "assets/onboarding1.png"
+      "title": "Selamat datang di gojek!",
+      "description": "Aplikasi yang bikin hidupmu lebih nyaman. Siap bantuin  semua kebutuhan mu, kapanpun, dan dimanapun",
+      "image": "assets/images/onboarding1.png"
     },
     {
-      "title": "Explore",
-      "description": "Discover amazing features",
-      "image": "assets/onboarding2.png"
+      "title": "Transportasi & logistik",
+      "description": "Antarin kamu jalan atau ambilin barang lebih gampang tinggal  ngeklik doang",
+      "image": "assets/images/onboarding2.png"
     },
     {
-      "title": "Get Started",
-      "description": "Let's get started!",
-      "image": "assets/nboarding3.png"
+      "title": "Pesan makan & belanja",
+      "description": "Lagi ngidam sesuatu? Gojek beliin gak pakai lama.",
+      "image": "assets/images/onboarding3.png"
     }
   ];
 
